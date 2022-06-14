@@ -1,3 +1,75 @@
+# FindTruman Scenes Server
+
+FindTruman 创作/解谜场景的服务端程序，提供用户场景体验状态的记录、留言存储及IPFS接入功能。
+
+## 项目结构
+
+项目采用`nestjs`框架，以模块化方式开发，主要模块为：
+
+- Transform Intecepter
+  
+  对Controller返回结果统一包装为 {code, msg, data} 形式。
+  
+- RequestLoggerMiddleware
+
+  开始处理请求时、请求处理完成时打印日志，并附带耗时信息
+  
+- VerifyEthSignPipe
+
+  用于解析、验证用户签名数据
+  
+- IpfsModule
+
+  ipfs相关服务，目前提供文件上传功能。
+  
+- ScenesModule
+
+  场景相关服务，目前留言、解密报告、故事创作、场景勋章功能。
+
+
+
+## 部署&启动流程
+
+1. 安装依赖
+
+    ``` bash
+    $ pnpm install
+    ```
+
+2. 配置运行参数
+    
+    项目使用`nestjs`的`ConfigModule`模块，从环境文件及环境变量中提取参数，参数列表如下
+    
+    ``` bash
+    # 服务运行端口
+    PORT=3300
+    # 是否启用Swagger文档
+    OPENAPI=true
+    # 日志文件存储位置
+    LOGGER_FILE=logs/server.log
+    # 数据库相应配置
+    DATABASE_MYSQL_HOST=127.0.0.1
+    DATABASE_MYSQL_PORT=3306
+    DATABASE_MYSQL_USER=root
+    DATABASE_MYSQL_PASSWORD=root
+    DATABASE_MYSQL_DATABASE=dorahacks-scenes
+    # bull 消息队列所用的 redis 服务配置
+    BULL_REDIS_HOST=127.0.0.1
+    BULL_REDIS_PORT=6379
+    # 用于验证用户签名的节点rpc地址
+    WEB3_ECRECOVER_NODE=http://127.0.0.1:8545
+    # 签名中时间戳的有效期限
+    WEB3_ECRECOVER_ALIVE=60000
+    ```
+
+3. 启动项目
+
+    程序中配置为自动同步数据库，无需手动创建。若需要监听本地文件变化，请使用 `pnpm start:dev` 命令
+
+    ``` bash
+    $ pnpm start
+    ```
+
 ## The following is framework README.md
 
 <p align="center">
