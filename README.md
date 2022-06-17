@@ -1,6 +1,6 @@
-# FindTruman Scenes Server
+# Scenes Server
 
-FindTruman 创作/解谜场景的服务端程序，提供用户场景体验状态的记录、留言存储及IPFS接入功能。
+创作/解谜场景的服务端程序，提供用户场景体验状态的记录、留言存储及IPFS接入功能。
 
 ## 项目结构
 
